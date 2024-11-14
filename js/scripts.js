@@ -75,7 +75,7 @@ function displayProducts() {
         const productElement = document.createElement("div");
         productElement.className = "product-tile";
         productElement.innerHTML = `
-            <img src="${product.img}" alt="${product.name}" width="100">
+           
             <h4>${product.name}</h4>
             <p>Price: AED${product.price.toFixed(2)}</p>
             <input type="number" id="quantity-${product.id}" placeholder="Quantity">
