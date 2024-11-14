@@ -25,6 +25,13 @@ const products = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+        document.getElementById("username").textContent = `Welcome, ${user.email}`;
+    }
+
+    updateCartCount();
+
     const loginForm = document.getElementById("loginForm");
     if (loginForm) {
         loginForm.addEventListener("submit", handleLogin);
@@ -42,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         displayOrders();
     }
 });
+
 
 function handleLogin(event) {
     event.preventDefault();
@@ -137,31 +145,6 @@ function displayOrders() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-        document.getElementById("username").textContent = `Welcome, ${user.email}`;
-    }
-
-    updateCartCount();
-
-    const loginForm = document.getElementById("loginForm");
-    if (loginForm) {
-        loginForm.addEventListener("submit", handleLogin);
-    }
-
-    if (document.getElementById("productList")) {
-        displayProducts();
-    }
-
-    if (document.getElementById("cart")) {
-        displayCart();
-    }
-
-    if (document.getElementById("orderList")) {
-        displayOrders();
-    }
-});
 
 function logout() {
     localStorage.removeItem("user");
@@ -171,5 +154,8 @@ function logout() {
 
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    document.getElementById("cart-count").textContent = `Cart: ${cart.length} items`;
+    if(document.getElementById("cart-count")){
+        document.getElementById("cart-count").textContent = `Cart: ${cart.length} items`;
+    }
+
 }
