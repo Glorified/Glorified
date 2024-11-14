@@ -159,3 +159,36 @@ function updateCartCount() {
     }
 
 }
+
+function generateInvoice() {
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const invoiceElement = document.getElementById("invoice");
+    let totalAmount = 0;
+
+    orders.forEach(order => {
+        const orderElement = document.createElement("div");
+        orderElement.className = "card mb-3";
+        orderElement.innerHTML = `
+            <div class="card-body">
+                <h4 class="card-title">${order.name}</h4>
+                <p class="card-text">Price: $${order.price.toFixed(2)}</p>
+                <p class="card-text">Quantity: ${order.quantity}</p>
+                <p class="card-text">Total: $${(order.price * order.quantity).toFixed(2)}</p>
+            </div>
+        `;
+        totalAmount += order.price * order.quantity;
+        invoiceElement.appendChild(orderElement);
+    });
+
+    const totalElement = document.createElement("div");
+    totalElement.className = "card mt-3";
+    totalElement.innerHTML = `
+        <div class="card-body">
+            <h4 class="card-title">Total Amount: $${totalAmount.toFixed(2)}</h4>
+        </div>
+    `;
+    invoiceElement.appendChild(totalElement);
+}
+
+// Call the function to generate the invoice when the page loads
+document.addEventListener("DOMContentLoaded", generateInvoice);

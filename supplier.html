@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supplier Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -13,11 +14,16 @@
     <div class="user-info">
         <span id="username"></span>
         <span id="cart-count"></span>
-        <button onclick="logout()">Logout</button>
+        <button onclick="logout()" class="btn btn-primary">Logout</button>
     </div>
 </header>
-    <h2>Supplier Dashboard</h2>
-    <div id="orderList"></div>
-    <script src="js/scripts.js"></script>
+<h2>Supplier Dashboard</h2>
+<div id="orderList"></div>
+<h3>Invoice</h3>
+<div id="invoice" class="container"></div>
+<script src="js/scripts.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
