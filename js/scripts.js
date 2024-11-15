@@ -166,9 +166,9 @@ function generateInvoice() {
         orderElement.innerHTML = `
             <div class="card-body">
                 <h4 class="card-title">${order.name}</h4>
-                <p class="card-text">Price: $${order.price.toFixed(2)}</p>
+                <p class="card-text">Price: AED${order.price.toFixed(2)}</p>
                 <p class="card-text">Quantity: ${order.quantity}</p>
-                <p class="card-text">Total: $${(order.price * order.quantity).toFixed(2)}</p>
+                <p class="card-text">Total: AED${(order.price * order.quantity).toFixed(2)}</p>
             </div>
         `;
         totalAmount += order.price * order.quantity;
@@ -179,7 +179,7 @@ function generateInvoice() {
     totalElement.className = "card mt-3";
     totalElement.innerHTML = `
         <div class="card-body">
-            <h4 class="card-title">Total Amount: $${totalAmount.toFixed(2)}</h4>
+            <h4 class="card-title">Total Amount: AED${totalAmount.toFixed(2)}</h4>
         </div>
     `;
     invoiceElement.appendChild(totalElement);
