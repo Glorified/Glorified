@@ -179,7 +179,7 @@ function generateInvoice() {
     totalElement.className = "card mt-3";
     totalElement.innerHTML = `
         <div class="card-body">
-            <h4 class="card-title">Total Amount: AED${totalAmount.toFixed(2)}</h4>
+            <h4 class="card-title">Total Amount: ${totalAmount.toFixed(2)}AED</h4>
         </div>
     `;
     invoiceElement.appendChild(totalElement);
