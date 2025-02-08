@@ -77,7 +77,7 @@ function displayProducts() {
         productElement.innerHTML = `
             <img src="${product.img}" alt="${product.name}" width="100">
             <h4>${product.name}</h4>
-            <p>Price: $${product.price.toFixed(2)}</p>
+            <p>Price: AED ${product.price.toFixed(2)}</p>
             <input type="number" id="quantity-${product.id}" placeholder="Quantity">
             <button onclick="addToCart(${product.id})">Add to Cart</button>
         `;
@@ -133,7 +133,7 @@ function checkout() {
 //         const orderElement = document.createElement("div");
 //         orderElement.innerHTML = `
 //             <h4>${order.name}</h4>
-//             <p>Price: $${order.price.toFixed(2)}</p>
+//             <p>Price: AED ${order.price.toFixed(2)}</p>
 //             <p>Quantity: ${order.quantity}</p>
 //         `;
 //         orderList.appendChild(orderElement);
@@ -166,9 +166,9 @@ function generateInvoice() {
         orderElement.innerHTML = `
             <div class="card-body">
                 <h4 class="card-title">${order.name}</h4>
-                <p class="card-text">Price: $${order.price.toFixed(2)}</p>
+                <p class="card-text">Price: AED ${order.price.toFixed(2)}</p>
                 <p class="card-text">Quantity: ${order.quantity}</p>
-                <p class="card-text">Total: $${(order.price * order.quantity).toFixed(2)}</p>
+                <p class="card-text">Total: AED ${(order.price * order.quantity).toFixed(2)}</p>
             </div>
         `;
         totalAmount += order.price * order.quantity;
@@ -179,7 +179,7 @@ function generateInvoice() {
     totalElement.className = "card mt-3";
     totalElement.innerHTML = `
         <div class="card-body">
-            <h4 class="card-title">Total Amount: $${totalAmount.toFixed(2)}</h4>
+            <h4 class="card-title">Total Amount: AED ${totalAmount.toFixed(2)}</h4>
         </div>
     `;
     invoiceElement.appendChild(totalElement);
@@ -200,12 +200,12 @@ document.addEventListener('DOMContentLoaded', function() {
             <td>${order.name}</td>
             <td>${order.price.toFixed(2)}</td>
             <td>${order.quantity}</td>
-            <td>$${orderPrice.toFixed(2)}</td>
+            <td>AED ${orderPrice.toFixed(2)}</td>
         `;
         orderListTableBody.appendChild(row);
     });
 
-    totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+    totalPriceElement.textContent = `AED ${totalPrice.toFixed(2)}`;
 });
 
 function handleTableAction(action) {
