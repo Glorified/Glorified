@@ -23,6 +23,36 @@
 <h3>Shopping Cart</h3>
 <div id="cart"></div>
 
+<!-- New buttons added here -->
+<div class="cart-actions">
+    <button class="pay-button" onclick="openPayModal()">Pay</button>
+    <button class="cancel-button" onclick="cancel()">Cancel</button>
+    <button class="clear-cart-button" onclick="clearCart()">Clear Cart</button>
+</div>
+
+<!-- Modal for capturing name and location -->
+<div id="payModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePayModal()">&times;</span>
+        <h2>Enter Your Details</h2>
+        <form id="payForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal for order confirmation -->
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="orderMessage"></p>
+    </div>
+</div>
+
 <script src="js/scripts.js"></script>
 </body>
 </html>

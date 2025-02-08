@@ -18,8 +18,35 @@
     </div>
 </header>
 <h2>Supplier Dashboard</h2>
-<div id="orderList"></div>
-<h3>Invoice</h3>
+<div id="orderList" class="table-responsive">
+    <table class="table table-bordered table-centered">
+        <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Product</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Orders will be dynamically inserted here -->
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4">Total Price</td>
+            <td id="totalPrice">$0.00</td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <button class="btn btn-success" onclick="handleTableAction('accepted')">Accept All</button>
+                <button class="btn btn-danger" onclick="handleTableAction('rejected')">Reject All</button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<!--<h3>Invoice</h3>-->
 <div id="invoice" class="container"></div>
 <script src="js/scripts.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

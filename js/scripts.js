@@ -125,20 +125,20 @@ function checkout() {
         alert("Your cart is empty.");
     }
 }
-
-function displayOrders() {
-    const orders = JSON.parse(localStorage.getItem("orders")) || [];
-    const orderList = document.getElementById("orderList");
-    orders.forEach(order => {
-        const orderElement = document.createElement("div");
-        orderElement.innerHTML = `
-            <h4>${order.name}</h4>
-            <p>Price: $${order.price.toFixed(2)}</p>
-            <p>Quantity: ${order.quantity}</p>
-        `;
-        orderList.appendChild(orderElement);
-    });
-}
+//
+// function displayOrders() {
+//     const orders = JSON.parse(localStorage.getItem("orders")) || [];
+//     const orderList = document.getElementById("orderList");
+//     orders.forEach(order => {
+//         const orderElement = document.createElement("div");
+//         orderElement.innerHTML = `
+//             <h4>${order.name}</h4>
+//             <p>Price: $${order.price.toFixed(2)}</p>
+//             <p>Quantity: ${order.quantity}</p>
+//         `;
+//         orderList.appendChild(orderElement);
+//     });
+// }
 
 
 function logout() {
@@ -154,7 +154,7 @@ function updateCartCount() {
     }
 
 }
-
+/*
 function generateInvoice() {
     const orders = JSON.parse(localStorage.getItem("orders")) || [];
     const invoiceElement = document.getElementById("invoice");
@@ -183,7 +183,93 @@ function generateInvoice() {
         </div>
     `;
     invoiceElement.appendChild(totalElement);
+}*/
+
+document.addEventListener('DOMContentLoaded', function() {
+    const orderList = JSON.parse(localStorage.getItem("orders")) || [];
+    const orderListTableBody = document.querySelector('#orderList tbody');
+    const totalPriceElement = document.getElementById('totalPrice');
+    let totalPrice = 0;
+
+    orderList.forEach(order => {
+        const row = document.createElement('tr');
+        const orderPrice = order.price * order.quantity;
+        totalPrice += orderPrice;
+        row.innerHTML = `
+            <td>${order.id}</td>
+            <td>${order.name}</td>
+            <td>${order.price.toFixed(2)}</td>
+            <td>${order.quantity}</td>
+            <td>$${orderPrice.toFixed(2)}</td>
+        `;
+        orderListTableBody.appendChild(row);
+    });
+
+    totalPriceElement.textContent = `$${totalPrice.toFixed(2)}`;
+});
+
+function handleTableAction(action) {
+    const orderListTableBody = document.querySelector('#orderList tbody');
+    orderListTableBody.innerHTML = '';
+    const message = `All orders have been ${action}.`;
+    const messageRow = document.createElement('tr');
+    messageRow.innerHTML = `<td colspan="5">${message}</td>`;
+    orderListTableBody.appendChild(messageRow);
+}
+function pay() {
+    const name = prompt("Please enter your name:");
+    const location = prompt("Please enter your location:");
+
+    if (name && location) {
+        const orderMessage = `Your order is placed, ${name}. It will be delivered at the location: ${location}.`;
+        document.getElementById('orderMessage').textContent = orderMessage;
+        document.getElementById('orderModal').style.display = 'block';
+    } else {
+        alert('Name and location are required to place the order.');
+    }
+}
+
+function openPayModal() {
+    document.getElementById('payModal').style.display = 'block';
+}
+
+function closePayModal() {
+    checkout();
+    document.getElementById('payModal').style.display = 'none';
+}
+
+document.getElementById('payForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    const location = document.getElementById('location').value;
+
+    if (name && location) {
+        const orderMessage = `Your order is placed, ${name}. It will be delivered at the location: ${location}.`;
+        document.getElementById('orderMessage').textContent = orderMessage;
+        document.getElementById('orderModal').style.display = 'block';
+        closePayModal();
+    } else {
+        alert('Name and location are required to place the order.');
+    }
+});
+
+function closeModal() {
+    document.getElementById('orderModal').style.display = 'none';
+}
+
+// Implement other functions (cancel, clearCart, etc.) as needed
+// Implement other functions (cancel, clearCart, etc.) as needed
+
+function cancel() {
+    // Implement cancel logic here
+    alert('Payment process canceled.');
+}
+
+function clearCart() {
+    // Implement clear cart logic here
+    document.getElementById('cart').innerHTML = '';
+    alert('Cart cleared.');
 }
 
 // Call the function to generate the invoice when the page loads
-document.addEventListener("DOMContentLoaded", generateInvoice);
+// document.addEventListener("DOMContentLoaded", generateInvoice);
